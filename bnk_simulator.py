@@ -1,7 +1,10 @@
 def main():
-    balance=0
     history_num=[]
     history_sym=[]
+    balance = 0
+    deposit = 0
+    withdraw = 0
+    
     while True:
         try: 
             frcommand=input("Command: ")
