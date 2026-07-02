@@ -1,10 +1,10 @@
 def main():
-    history_num=[]
-    history_sym=[]
     balance = 0
     deposit = 0
     withdraw = 0
-    
+    history_num = []
+    history_sym = []
+
     while True:
         try: 
             frcommand=input("Command: ")
@@ -29,12 +29,36 @@ def trans_deposit(deposit,balance,history_sym,history_num):
     while True:
         try:  
             new_dep=int(input("Amount: "))
-            deposit=deposit+new_dep
-            balance=balance+new_dep
-            history_sym.append("+")
-            history_num.append(new_dep)
-            return deposit,balance,history_sym,history_num
+            if new_dep>0:
+                deposit=deposit+new_dep
+                balance=balance+new_dep
+                history_sym.append("+")
+                history_num.append(new_dep)
+                return deposit,balance,history_sym,history_num
+            else:
+                continue
         except (ValueError, TypeError):
+            continue
+
+def trans_withdraw(withdraw,balance,history_sym,history_num):
+    while True:
+        try:
+            new_wit=int(input("Amount: "))
+            if new_wit>0:
+                if new_wit<=balance:
+                    withdraw=withdraw-new_wit
+                    balance=balance-new_wit
+                    history_sym.append("-")
+                    history_num.append(new_wit)
+                    return withdraw,balance,history_sym,history_num
+                else:
+                    print("Not enough funds")
+                    break
+            else:
+                continue
+        except (ValueError, TypeError):
+            continue
+main()        except (ValueError, TypeError):
             continue
 
 def trans_withdraw(withdraw,balance,history_sym,history_num):
